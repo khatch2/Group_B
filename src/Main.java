@@ -8,9 +8,9 @@ public class Main {
         //String name = scanner.nextLine();
         //System.out.println("Hello " + name + "!");
         while(true) {
-            System.out.println("1. Addera en fund? \n2. ");
+            System.out.println("1. Addera en fund? \n3. Avsluta programmet");
 
-            int choice = scanner.nextInt();
+            int choice = scanner.nextInt(); // MAAAJIIID
 
             switch(choice) {
 
