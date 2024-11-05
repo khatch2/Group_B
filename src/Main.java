@@ -1,57 +1,58 @@
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
-        //System.out.println("Hello world!");
+        ArrayList<Company> companyList = new ArrayList<>();
         Scanner scanner = new Scanner(System.in);
 
-        System.out.println("patrick");
-        //System.out.println("Enter your name: ");
-        //String name = scanner.nextLine();
-        //System.out.println("Hello " + name + "!");
-//        while(true) {
-//            System.out.println("1. Addera en fund? \n2. ");
-//
-//            int choice = scanner.nextInt();
-//
-//            switch(choice) {
-//
-//                case 1:
-//                    System.out.println("Du har valt case 1");
-//            }
-//        }
+        Company företag1 = new Company("JoelAB", 250);
+        Company företag2 = new Company("SirakAB", 250);
+        Company företag3 = new Company("RonjaAB", 250);
+        Company företag4 = new Company("KhatchikAB", 250);
+        Company företag5 = new Company("JacobAB", 250);
+        Company företag6 = new Company("MajidAB", 250);
+        Company företag7 = new Company("AlbinAB", 250);
+        Company företag8 = new Company("PatrickAB", 250);
+
+        companyList.add(företag1);
+        companyList.add(företag2);
+        companyList.add(företag3);
+        companyList.add(företag4);
+        companyList.add(företag5);
+        companyList.add(företag6);
+        companyList.add(företag7);
+        companyList.add(företag8);
 
 
-        // sek, eur, pund, usd, yen
 
-
-        int userCapital = 5000; // sek
-
-//        System.out.println("Vilken valuta vill du köpa?");
-//        System.out.println("\n1: EUR\n2: Pound\n3: USD\n4: Yen");
-//        System.out.println("Svar: ");
-
-        System.out.println("Välj företag: \nFöretag 1\nFöretag 2\nFöretag 3");
-        int userChoice = scanner.nextInt();
+        System.out.println("meny");
+        System.out.println("1. Visa alla företag \n2. köp\n3. sälj\n4. visa portfolio\n0. avsluta");
+        int val = scanner.nextInt();
         scanner.nextLine();
 
-        switch (userChoice) {
+        switch (val) {
             case 1:
+
+                for (Company company : companyList) {
+                    System.out.println(company);
+                }
 
                 break;
             case 2:
+                // TODO vad det kostar
+                // TODO att man har det värdet i aktier
                 break;
             case 3:
+                // TODO kolla antal aktier och gångra med priset
                 break;
             case 4:
+                // TODO skapa lista för portfolio som innehåller företag, antal aktier
+                break;
+            case 0:
                 break;
             default:
         }
-
-        // i förhållande till sek
-
-        // kanske ska använda enum?
-        //Currency eur = new Currency("EUR", );
-
     }
 }
+
