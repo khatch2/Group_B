@@ -24,35 +24,34 @@ public class Main {
         companyList.add(företag7);
         companyList.add(företag8);
 
+        while (true) {
+            System.out.println("meny");
+            System.out.println("1. Visa alla företag \n2. köp\n3. sälj\n4. visa portfolio\n0. avsluta");
+            int val = scanner.nextInt();
+            scanner.nextLine();
 
-
-        System.out.println("meny");
-        System.out.println("1. Visa alla företag \n2. köp\n3. sälj\n4. visa portfolio\n0. avsluta");
-        int val = scanner.nextInt();
-        scanner.nextLine();
-
-        switch (val) {
-            case 1:
-
-                for (Company company : companyList) {
-                    System.out.println(company);
-                }
-
-                break;
-            case 2:
-                // TODO vad det kostar
-                // TODO att man har det värdet i aktier
-                break;
-            case 3:
-                // TODO kolla antal aktier och gångra med priset
-                break;
-            case 4:
-                // TODO skapa lista för portfolio som innehåller företag, antal aktier
-                break;
-            case 0:
-                break;
-            default:
+            switch (val) {
+                case 1:
+                    for (Company company : companyList) {
+                        System.out.println(company);
+                    }
+                    break;
+                case 2:
+                    // TODO vad det kostar
+                    // TODO att man har det värdet i aktier
+                    break;
+                case 3:
+                    // TODO kolla antal aktier och gångra med priset
+                    break;
+                case 4:
+                    // TODO skapa lista för portfolio som innehåller företag, antal aktier
+                    break;
+                case 0:
+                    scanner.close();
+                    return;
+                default:
+                    System.out.println("Ogiltigt val, försök igen.");
+            }
         }
     }
 }
-
