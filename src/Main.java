@@ -26,7 +26,11 @@ public class Main {
 
         while (true) {
             System.out.println("meny");
-            System.out.println("1. Visa alla företag \n2. köp\n3. sälj\n4. visa portfolio\n0. avsluta");
+            System.out.println( "1. Visa alla företag \n" +
+                                "2. köp\n" +
+                                "3. sälj\n" +
+                                "4. visa portfolio\n" +
+                                "0. avsluta");
             int val = scanner.nextInt();
             scanner.nextLine();
 
@@ -41,6 +45,12 @@ public class Main {
                     // TODO att man har det värdet i aktier
                     break;
                 case 3:
+                    for (Company company : companyList) {
+                        System.out.println("  Company's name " +
+                                company.getName() + " has the price of all its stock = " +
+                                company.getStockAmount() * company.getStockPrice() +
+                                " SEK " );
+                    }
                     // TODO kolla antal aktier och gångra med priset
                     break;
                 case 4:
