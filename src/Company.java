@@ -1,4 +1,10 @@
 public class Company {
+
+    // Feilds
+    private String name;
+    private double stockPrice;
+    private int stockAmount;
+
     public String getName() {
         return name;
     }
@@ -23,21 +29,22 @@ public class Company {
         this.stockAmount = stockAmount;
     }
 
-    private String name;
-    private double stockPrice;
-    private int stockAmount;
 
+
+    // Constructer.
     public Company(String name, double stockPrice) {
         this.name = name;
         this.stockPrice = stockPrice;
         this.stockAmount = 1;
     }
 
+    // Another Constructer.
     public Company(String name, double stockPrice, int stockAmount) {
         this.name = name;
         this.stockPrice = stockPrice;
         this.stockAmount = stockAmount;
     }
+
 
     @Override
     public String toString() {

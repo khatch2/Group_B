@@ -1,3 +1,4 @@
+import java.sql.SQLOutput;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -40,10 +41,63 @@ public class Main {
                         System.out.println(company);
                     }
                     break;
+
+
+
+
+
+
+
+
+
+
                 case 2:
                     // TODO vad det kostar
                     // TODO att man har det värdet i aktier
+
+                    System.out.println("Enter the company name: ");
+                    String companyName = scanner.nextLine();
+
+                    System.out.println("Enter the desired amout of stocks you wish to purchase: ");
+                    int numberOfStocks = scanner.nextInt();
+                    scanner.nextLine();
+
+                    Company companyToBuy = null;
+
+                    for(Company company : companyList) {
+                        if (company.getName().equalsIgnoreCase( companyName) ) 1{
+
+                            companyToBuy = company;
+
+                            company.setStockAmount(company.getStockAmount() - numberOfStocks );
+
+
+
+                            System.out.println("iths " + company);
+                            break;
+
+
+                        }
+                    }
+
+                    if (companyToBuy != null){
+                        int totalCost = (int) (numberOfStocks * companyToBuy.getStockPrice()) ;
+                        System.out.println(" total cost: " + totalCost + " SEK " );
+                        //
+
+                    }      else {
+
+                        System.out.println(" Company is not available.");
+                    }
                     break;
+
+
+
+
+
+
+
+
                 case 3:
                     for (Company company : companyList) {
                         System.out.println("  Company's name " +
@@ -63,5 +117,7 @@ public class Main {
                     System.out.println("Ogiltigt val, försök igen.");
             }
         }
+
+
     }
 }
