@@ -6,4 +6,12 @@ public class Portfolio {
         this.companyName = companyName;
         this.stockAmount = stockAmount;
     }
+
+    @Override
+    public String toString() {
+        return "Portfolio{" +
+                "companyName='" + companyName + '\'' +
+                ", stockAmount=" + stockAmount +
+                '}';
+    }
 }

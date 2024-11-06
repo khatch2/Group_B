@@ -47,13 +47,10 @@ public class Main {
                     break;
 
                 case 2:
-                    // TODO vad det kostar
-                    // TODO att man har det värdet i aktier
-
                     System.out.println("Enter the company name: ");
                     String companyName = scanner.nextLine();
 
-                    System.out.println("Enter the desired amout of stocks you wish to purchase: ");
+                    System.out.println("Enter the desired amount of stocks you wish to purchase: ");
                     int numberOfStocks = scanner.nextInt();
                     scanner.nextLine();
 
@@ -66,12 +63,8 @@ public class Main {
 
                             company.setStockAmount(company.getStockAmount() - numberOfStocks );
 
-
-
                             //System.out.println("iths " + company);
                             break;
-
-
                         }
                     }
 
@@ -83,17 +76,9 @@ public class Main {
                         listPortfolio.add(userPortfolio);
 
                     }      else {
-
                         System.out.println(" Company is not available.");
                     }
                     break;
-
-
-
-
-
-
-
 
                 case 3:
                     for (Company company : companyList) {
@@ -102,11 +87,14 @@ public class Main {
                                 company.getStockAmount() * company.getStockPrice() +
                                 " SEK " );
                     }
-                    // TODO kolla antal aktier och gångra med priset
                     break;
                 case 4:
                     // TODO skapa lista för portfolio som innehåller företag, antal aktier
+                    for (Portfolio portfolio : listPortfolio) {
+                        System.out.println(portfolio);
+                    }
                     break;
+                    // TODO visa transaktions historik
                 case 0:
                     run = false;
                     scanner.close();
@@ -115,7 +103,5 @@ public class Main {
                     System.out.println("Ogiltigt val, försök igen.");
             }
         }
-
-
     }
 }
