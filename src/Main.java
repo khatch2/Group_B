@@ -6,7 +6,7 @@ public class Main {
     public static void main(String[] args) {
         ArrayList<Company> companyList = new ArrayList<>();
         Scanner scanner = new Scanner(System.in);
-        final double startCapital = 5000; // 5000 SEK
+        final double startCapital = 5000; // 5000 SEK startpacket
 
 
         Company företag1 = new Company("JoelAB", startCapital);
