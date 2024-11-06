@@ -65,7 +65,7 @@ public class Main {
                     Company companyToBuy = null;
 
                     for(Company company : companyList) {
-                        if (company.getName().equalsIgnoreCase( companyName) ) 1{
+                        if (company.getName().equalsIgnoreCase( companyName)) {
 
                             companyToBuy = company;
 
@@ -117,6 +117,8 @@ public class Main {
                     System.out.println("Ogiltigt val, försök igen.");
             }
         }
+
+
 
 
     }
