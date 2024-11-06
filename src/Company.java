@@ -5,6 +5,7 @@ public class Company {
     private double stockPrice;
     private int stockAmount;
 
+
     public String getName() {
         return name;
     }

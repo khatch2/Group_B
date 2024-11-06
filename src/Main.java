@@ -6,15 +6,17 @@ public class Main {
     public static void main(String[] args) {
         ArrayList<Company> companyList = new ArrayList<>();
         Scanner scanner = new Scanner(System.in);
+        final double startCapital = 5000; // 5000 SEK
 
-        Company företag1 = new Company("JoelAB", 250);
-        Company företag2 = new Company("SirakAB", 250);
-        Company företag3 = new Company("RonjaAB", 250);
-        Company företag4 = new Company("KhatchikAB", 250);
-        Company företag5 = new Company("JacobAB", 250);
-        Company företag6 = new Company("MajidAB", 250);
-        Company företag7 = new Company("AlbinAB", 250);
-        Company företag8 = new Company("PatrickAB", 250);
+
+        Company företag1 = new Company("JoelAB", startCapital);
+        Company företag2 = new Company("SirakAB", startCapital);
+        Company företag3 = new Company("RonjaAB", startCapital);
+        Company företag4 = new Company("KhatchikAB", startCapital);
+        Company företag5 = new Company("JacobAB", startCapital);
+        Company företag6 = new Company("MajidAB", startCapital);
+        Company företag7 = new Company("AlbinAB", startCapital);
+        Company företag8 = new Company("PatrickAB", startCapital);
 
         companyList.add(företag1);
         companyList.add(företag2);
@@ -65,7 +67,7 @@ public class Main {
                     Company companyToBuy = null;
 
                     for(Company company : companyList) {
-                        if (company.getName().equalsIgnoreCase( companyName) ) 1{
+                        if (company.getName().equalsIgnoreCase( companyName) ) {
 
                             companyToBuy = company;
 
