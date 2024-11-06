@@ -6,17 +6,18 @@ public class Main {
     public static void main(String[] args) {
         ArrayList<Company> companyList = new ArrayList<>();
         Scanner scanner = new Scanner(System.in);
-        final double startCapital = 5000; // 5000 SEK startpacket
+        double userCapital = 5000; // 5000 SEK startpacket
+        Portfolio userPortfolio;
+        ArrayList<Portfolio> listPortfolio = new ArrayList<>();
 
-
-        Company företag1 = new Company("JoelAB", startCapital);
-        Company företag2 = new Company("SirakAB", startCapital);
-        Company företag3 = new Company("RonjaAB", startCapital);
-        Company företag4 = new Company("KhatchikAB", startCapital);
-        Company företag5 = new Company("JacobAB", startCapital);
-        Company företag6 = new Company("MajidAB", startCapital);
-        Company företag7 = new Company("AlbinAB", startCapital);
-        Company företag8 = new Company("PatrickAB", startCapital);
+        Company företag1 = new Company("JoelAB", 200);
+        Company företag2 = new Company("SirakAB", 200);
+        Company företag3 = new Company("RonjaAB", 200);
+        Company företag4 = new Company("KhatchikAB", 200);
+        Company företag5 = new Company("JacobAB", 200);
+        Company företag6 = new Company("MajidAB", 200);
+        Company företag7 = new Company("AlbinAB", 200);
+        Company företag8 = new Company("PatrickAB", 200);
 
         companyList.add(företag1);
         companyList.add(företag2);
@@ -27,8 +28,9 @@ public class Main {
         companyList.add(företag7);
         companyList.add(företag8);
 
-        while (true) {
-            System.out.println("meny");
+        boolean run = true;
+        while (run) {
+            System.out.println("meny - Ditt kapital = " + userCapital);
             System.out.println( "1. Visa alla företag \n" +
                                 "2. köp\n" +
                                 "3. sälj\n" +
@@ -43,15 +45,6 @@ public class Main {
                         System.out.println(company);
                     }
                     break;
-
-
-
-
-
-
-
-
-
 
                 case 2:
                     // TODO vad det kostar
@@ -75,7 +68,7 @@ public class Main {
 
 
 
-                            System.out.println("iths " + company);
+                            //System.out.println("iths " + company);
                             break;
 
 
@@ -85,7 +78,9 @@ public class Main {
                     if (companyToBuy != null){
                         int totalCost = (int) (numberOfStocks * companyToBuy.getStockPrice()) ;
                         System.out.println(" total cost: " + totalCost + " SEK " );
-                        //
+                        userCapital -= totalCost;
+                        userPortfolio = new Portfolio(companyToBuy.getName(), numberOfStocks);
+                        listPortfolio.add(userPortfolio);
 
                     }      else {
 
@@ -113,6 +108,7 @@ public class Main {
                     // TODO skapa lista för portfolio som innehåller företag, antal aktier
                     break;
                 case 0:
+                    run = false;
                     scanner.close();
                     return;
                 default:

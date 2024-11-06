@@ -36,7 +36,7 @@ public class Company {
     public Company(String name, double stockPrice) {
         this.name = name;
         this.stockPrice = stockPrice;
-        this.stockAmount = 1;
+        this.stockAmount = 1000;
     }
 
     // Another Constructer.
@@ -49,10 +49,7 @@ public class Company {
 
     @Override
     public String toString() {
-        return "Company{" +
-                "name='" + name + '\'' +
-                ", stockPrice=" + stockPrice +
-                ", stockAmount=" + stockAmount +
-                '}';
+        return "Company: " + name +
+                ", Stock price: " + stockPrice + ", Stock amount: " + stockAmount;
     }
 }
