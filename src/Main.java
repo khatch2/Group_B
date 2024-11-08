@@ -20,109 +20,100 @@ public class Main {
 
         boolean run = true;
         while (run) {
-            System.out.println("meny - Ditt kapital = " + userCapital);
-            System.out.println( "1. Visa alla company \n" +
-                                "2. köp\n" +
-                                "3. sälj\n" +
-                                "4. visa portfolio\n" +
-                                "0. avsluta");
-            int val = scanner.nextInt();
+            System.out.println("Stockmarket");
+            System.out.println("User capital: " + userCapital);
+            System.out.println( "1. Show all companies\n" +
+                                "2. Buy stocks\n" +
+                                "3. Sell stocks\n" +
+                                "4. Show portfolio\n" +
+                                "0. Exit");
+            int menuChoice = scanner.nextInt();
             scanner.nextLine();
 
-            switch (val) {
+            switch (menuChoice) {
                 case 1:
-                    printAllCompanies(companyList);
+                    printList(companyList);
                     break;
-
                 case 2:
-                    System.out.println("Enter the company name: ");
+                    System.out.println("Enter the company name you want to buy stocks from: ");
                     String companyName = scanner.nextLine();
 
                     System.out.println("Enter the desired amount of stocks you wish to purchase: ");
-                    int numberOfStocks = scanner.nextInt();
+                    int numberOfStocksToBuy = scanner.nextInt();
                     scanner.nextLine();
 
-                    Company companyToBuy = null;
+                    Company companyStocksToBuy = null;
 
                     for(Company company : companyList) {
-                        if (company.getName().equalsIgnoreCase( companyName) ) {
+                        if (company.getName().equalsIgnoreCase(companyName)) {
 
-                            companyToBuy = company;
+                            companyStocksToBuy = company;
 
-                            company.setStockAmount(company.getStockAmount() - numberOfStocks );
+                            company.setStockAmount(company.getStockAmount() - numberOfStocksToBuy);
                             break;
                         }
                     }
 
-                    if (companyToBuy != null){
-                        int totalCost = (int) (numberOfStocks * companyToBuy.getStockPrice()) ;
-                        System.out.println(" total cost: " + totalCost + " SEK " );
-                        userCapital -= totalCost;
-                        userPortfolio = new Portfolio(companyToBuy.getName(), numberOfStocks);
+                    if (companyStocksToBuy != null){
+                        int totalStockPrice = (int) (numberOfStocksToBuy * companyStocksToBuy.getStockPrice()) ;
+                        System.out.println("Total cost: " + totalStockPrice + " SEK " );
+                        userCapital -= totalStockPrice;
+                        userPortfolio = new Portfolio(companyStocksToBuy.getName(), numberOfStocksToBuy);
                         userPortfolioList.add(userPortfolio);
 
                     }      else {
-                        System.out.println(" Company is not available.");
+                        System.out.println("Company is not available.");
                     }
 
                     for(Company company : companyList) {
                         company.randomizeStockPrice(company.getStockPrice());
                     }
                     break;
-
                 case 3:
-                    printPortfolio(userPortfolioList);
-                    System.out.println("Välj ett company vars aktier du vill sälja");
-                    int companyNumberOrder = scanner.nextInt();
+                    printList(userPortfolioList);
+                    System.out.println("\nChoose the company stock you want to sell");
+                    int companyIndex = scanner.nextInt() - 1;
                     scanner.nextLine();
-                    System.out.print("Antal aktier du vill sälja: ");
-                    numberOfStocks = scanner.nextInt();
+                    System.out.println("Enter the amount of stocks you want to sell");
+                    int numberOfStocksToSell = scanner.nextInt();
                     scanner.nextLine();
 
+                    Company companyStocksToSell = companyList.get(companyIndex);
+                    companyStocksToSell.setStockAmount(companyStocksToSell.getStockAmount() + numberOfStocksToSell);
 
-                    Company companyToSell = companyList.get(companyNumberOrder-1);
-                    companyToSell.setStockAmount(companyToSell.getStockAmount() + numberOfStocks );
+                    if (companyStocksToSell != null){
+                        int userProfit = (int) (numberOfStocksToSell * companyStocksToSell.getStockPrice()) ;
+                        System.out.println("Profit: " + userProfit + " SEK " );
+                        userCapital += userProfit;
 
-                    if (companyToSell != null){
-                        int totalProfit = (int) (numberOfStocks * companyToSell.getStockPrice()) ;
-                        System.out.println(" total profit: " + totalProfit + " SEK " );
-                        userCapital += totalProfit;
+                        userPortfolioList.get(companyIndex).setStockAmount(
+                                userPortfolioList.get(companyIndex).getStockAmount() - numberOfStocksToSell);
 
-                        userPortfolioList.get(companyNumberOrder-1).setStockAmount(
-                                userPortfolioList.get(companyNumberOrder-1).getStockAmount() - numberOfStocks);
-                        if (userPortfolioList.get(companyNumberOrder-1).getStockAmount() == 0) {
-                            userPortfolioList.remove(companyNumberOrder-1);
+                        if (userPortfolioList.get(companyIndex).getStockAmount() == 0) {
+                            userPortfolioList.remove(companyIndex);
                         }
-
                     }      else {
-                        System.out.println(" Company is not available.");
+                        System.out.println("\nCompany stocks not available.");
                     }
-
                     break;
                 case 4:
-                    printPortfolio(userPortfolioList);
+                    printList(userPortfolioList);
                     break;
                 case 0:
                     run = false;
                     scanner.close();
                     return;
                 default:
-                    System.out.println("Ogiltigt val, försök igen.");
+                    System.out.println("Please enter one of the menu options.");
             }
+            System.out.println();
         }
     }
 
-    private static void printAllCompanies(ArrayList<Company> companyList) {
-        for (int i = 0; i < companyList.size(); i++) {
-            Company company = companyList.get(i);
-            System.out.println((i+1) + ": " + company);
-        }
-    }
-
-    private static void printPortfolio(ArrayList<Portfolio> portfolioList) {
-        for (int i = 0; i < portfolioList.size(); i++) {
-            Portfolio portfolio = portfolioList.get(i);
-            System.out.println((i+1) + ": " + portfolio);
+    private static <T> void printList(ArrayList<T> list) {
+        for (int i = 0; i < list.size(); i++) {
+            T item = list.get(i);
+            System.out.println((i+1) + ": " + item);
         }
     }
 }

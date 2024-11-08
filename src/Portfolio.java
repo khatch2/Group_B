@@ -7,9 +7,6 @@ public class Portfolio {
         this.stockAmount = stockAmount;
     }
 
-    public String getCompanyName() {
-        return companyName;
-    }
     public int getStockAmount() {
         return stockAmount;
     }
@@ -19,10 +16,8 @@ public class Portfolio {
 
     @Override
     public String toString() {
-        // TODO fixa så att utskriften blir lite tydligare
-        return "Portfolio{" +
-                "companyName='" + companyName + '\'' +
-                ", stockAmount=" + stockAmount +
-                '}';
+        return "Portfolio: " +
+                "companyName: " + companyName +
+                ", stockAmount: " + stockAmount + "\n";
     }
 }
