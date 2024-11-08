@@ -1,3 +1,4 @@
+import javax.sound.sampled.Port;
 import java.sql.SQLOutput;
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -8,7 +9,7 @@ public class Main {
         Scanner scanner = new Scanner(System.in);
         double userCapital = 5000; // 5000 SEK startpacket
         Portfolio userPortfolio;
-        ArrayList<Portfolio> listPortfolio = new ArrayList<>();
+        ArrayList<Portfolio> portfolioList = new ArrayList<>();
 
         Company företag1 = new Company("JoelAB", 200);
         Company företag2 = new Company("SirakAB", 200);
@@ -41,9 +42,7 @@ public class Main {
 
             switch (val) {
                 case 1:
-                    for (Company company : companyList) {
-                        System.out.println(company);
-                    }
+                    printAllCompanies(companyList);
                     break;
 
                 case 2:
@@ -62,8 +61,6 @@ public class Main {
                             companyToBuy = company;
 
                             company.setStockAmount(company.getStockAmount() - numberOfStocks );
-
-                            //System.out.println("iths " + company);
                             break;
                         }
                     }
@@ -73,26 +70,75 @@ public class Main {
                         System.out.println(" total cost: " + totalCost + " SEK " );
                         userCapital -= totalCost;
                         userPortfolio = new Portfolio(companyToBuy.getName(), numberOfStocks);
-                        listPortfolio.add(userPortfolio);
+                        portfolioList.add(userPortfolio);
 
                     }      else {
                         System.out.println(" Company is not available.");
                     }
+
+                    for(Company company : companyList) {
+                        company.randomizeStockPrice(company.getStockPrice());
+                    }
                     break;
 
                 case 3:
-                    for (Company company : companyList) {
-                        System.out.println("  Company's name " +
-                                company.getName() + " has the price of all its stock = " +
-                                company.getStockAmount() * company.getStockPrice() +
-                                " SEK " );
+//                    for (Company company : companyList) {
+//                        System.out.println("  Company's name " +
+//                                company.getName() + " has the price of all its stock = " +
+//                                company.getStockAmount() * company.getStockPrice() +
+//                                " SEK " );
+//                    }
+
+                    printPortfolio(portfolioList);
+                    System.out.println("Välj ett företag vars aktier du vill sälja");
+                    int companyNumberOrder = scanner.nextInt();
+                    scanner.nextLine();
+                    System.out.print("Antal aktier du vill sälja: ");
+                    numberOfStocks = scanner.nextInt();
+                    scanner.nextLine();
+
+
+
+                    /*
+                    Company companyToSell = null;
+
+                    for(Company company : companyList) {
+                        if (company.getName().equalsIgnoreCase( companyName) ) {
+
+                            companyToSell = company;
+
+                            company.setStockAmount(company.getStockAmount() + numberOfStocks );
+                            break;
+                        }
                     }
+
+                    if (companyToSell != null){
+                        int totalProfit = (int) (numberOfStocks * companyToSell.getStockPrice()) ;
+                        System.out.println(" total profit: " + totalProfit + " SEK " );
+                        userCapital += totalProfit;
+
+                        portfolioList.remove(companyNumberOrder-1);
+
+                    }      else {
+                        System.out.println(" Company is not available.");
+                    } */
+
+
+                    /*
+                    for (int i = 0; i < portfolioList.size(); i++) {
+                        if (portfolioList.get(i).getCompanyName().equalsIgnoreCase(choice)) {
+
+                        }
+                    }*/
+
+                    // räkna ut priset som man sålt för
+                    // få pengarna på kontot
+                    // de aktierna ska tas bort från portfolion
+                    // aktierna ska komma tillbaka till företaget
                     break;
                 case 4:
                     // TODO skapa lista för portfolio som innehåller företag, antal aktier
-                    for (Portfolio portfolio : listPortfolio) {
-                        System.out.println(portfolio);
-                    }
+                    printPortfolio(portfolioList);
                     break;
                     // TODO visa transaktions historik
                 case 0:
@@ -103,5 +149,24 @@ public class Main {
                     System.out.println("Ogiltigt val, försök igen.");
             }
         }
+    }
+
+    private static void printAllCompanies(ArrayList<Company> companyList) {
+        for (int i = 0; i < companyList.size(); i++) {
+            Company company = companyList.get(i);
+            System.out.println((i+1) + ": " + company);
+        }
+    }
+
+    private static void printPortfolio(ArrayList<Portfolio> portfolioList) {
+        for (int i = 0; i < portfolioList.size(); i++) {
+            Portfolio portfolio = portfolioList.get(i);
+            System.out.println((i+1) + ": " + portfolio);
+        }
+
+
+//        for (Portfolio portfolio : portfolioList) {
+//            System.out.println(portfolio);
+//        }
     }
 }

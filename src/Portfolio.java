@@ -7,6 +7,17 @@ public class Portfolio {
         this.stockAmount = stockAmount;
     }
 
+    public String getCompanyName() {
+        return companyName;
+    }
+    public int getStockAmount() {
+        return stockAmount;
+    }
+//
+//    public double sellStock(String companyName, int stockAmount) {
+//
+//    }
+
     @Override
     public String toString() {
         return "Portfolio{" +

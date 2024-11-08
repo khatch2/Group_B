@@ -47,6 +47,10 @@ public class Company {
     }
 
 
+    public double randomizeStockPrice(double stockPrice) {
+        return this.stockPrice = stockPrice * (Math.random()+0.5);
+    }
+
     @Override
     public String toString() {
         return "Company: " + name +
