@@ -1,5 +1,3 @@
-import javax.sound.sampled.Port;
-import java.sql.SQLOutput;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -7,32 +5,23 @@ public class Main {
     public static void main(String[] args) {
         ArrayList<Company> companyList = new ArrayList<>();
         Scanner scanner = new Scanner(System.in);
-        double userCapital = 5000; // 5000 SEK startpacket
+        double userCapital = 5000;
         Portfolio userPortfolio;
-        ArrayList<Portfolio> portfolioList = new ArrayList<>();
+        ArrayList<Portfolio> userPortfolioList = new ArrayList<>();
 
-        Company företag1 = new Company("JoelAB", 200);
-        Company företag2 = new Company("SirakAB", 200);
-        Company företag3 = new Company("RonjaAB", 200);
-        Company företag4 = new Company("KhatchikAB", 200);
-        Company företag5 = new Company("JacobAB", 200);
-        Company företag6 = new Company("MajidAB", 200);
-        Company företag7 = new Company("AlbinAB", 200);
-        Company företag8 = new Company("PatrickAB", 200);
-
-        companyList.add(företag1);
-        companyList.add(företag2);
-        companyList.add(företag3);
-        companyList.add(företag4);
-        companyList.add(företag5);
-        companyList.add(företag6);
-        companyList.add(företag7);
-        companyList.add(företag8);
+        companyList.add(new Company("JoelAB", 200));
+        companyList.add(new Company("SirakAB", 200));
+        companyList.add(new Company("RonjaAB", 200));
+        companyList.add(new Company("KhatchikAB", 200));
+        companyList.add(new Company("JacobAB", 200));
+        companyList.add(new Company("MajidAB", 200));
+        companyList.add(new Company("AlbinAB", 200));
+        companyList.add(new Company("PatrickAB", 200));
 
         boolean run = true;
         while (run) {
             System.out.println("meny - Ditt kapital = " + userCapital);
-            System.out.println( "1. Visa alla företag \n" +
+            System.out.println( "1. Visa alla company \n" +
                                 "2. köp\n" +
                                 "3. sälj\n" +
                                 "4. visa portfolio\n" +
@@ -70,7 +59,7 @@ public class Main {
                         System.out.println(" total cost: " + totalCost + " SEK " );
                         userCapital -= totalCost;
                         userPortfolio = new Portfolio(companyToBuy.getName(), numberOfStocks);
-                        portfolioList.add(userPortfolio);
+                        userPortfolioList.add(userPortfolio);
 
                     }      else {
                         System.out.println(" Company is not available.");
@@ -82,8 +71,8 @@ public class Main {
                     break;
 
                 case 3:
-                    printPortfolio(portfolioList);
-                    System.out.println("Välj ett företag vars aktier du vill sälja");
+                    printPortfolio(userPortfolioList);
+                    System.out.println("Välj ett company vars aktier du vill sälja");
                     int companyNumberOrder = scanner.nextInt();
                     scanner.nextLine();
                     System.out.print("Antal aktier du vill sälja: ");
@@ -99,10 +88,10 @@ public class Main {
                         System.out.println(" total profit: " + totalProfit + " SEK " );
                         userCapital += totalProfit;
 
-                        portfolioList.get(companyNumberOrder-1).setStockAmount(
-                                portfolioList.get(companyNumberOrder-1).getStockAmount() - numberOfStocks);
-                        if (portfolioList.get(companyNumberOrder-1).getStockAmount() == 0) {
-                            portfolioList.remove(companyNumberOrder-1);
+                        userPortfolioList.get(companyNumberOrder-1).setStockAmount(
+                                userPortfolioList.get(companyNumberOrder-1).getStockAmount() - numberOfStocks);
+                        if (userPortfolioList.get(companyNumberOrder-1).getStockAmount() == 0) {
+                            userPortfolioList.remove(companyNumberOrder-1);
                         }
 
                     }      else {
@@ -111,7 +100,7 @@ public class Main {
 
                     break;
                 case 4:
-                    printPortfolio(portfolioList);
+                    printPortfolio(userPortfolioList);
                     break;
                 case 0:
                     run = false;
