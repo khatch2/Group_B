@@ -13,13 +13,13 @@ public class Portfolio {
     public int getStockAmount() {
         return stockAmount;
     }
-//
-//    public double sellStock(String companyName, int stockAmount) {
-//
-//    }
+    public void setStockAmount(int newStockAmount) {
+        this.stockAmount = newStockAmount;
+    }
 
     @Override
     public String toString() {
+        // TODO fixa så att utskriften blir lite tydligare
         return "Portfolio{" +
                 "companyName='" + companyName + '\'' +
                 ", stockAmount=" + stockAmount +

@@ -82,13 +82,6 @@ public class Main {
                     break;
 
                 case 3:
-//                    for (Company company : companyList) {
-//                        System.out.println("  Company's name " +
-//                                company.getName() + " has the price of all its stock = " +
-//                                company.getStockAmount() * company.getStockPrice() +
-//                                " SEK " );
-//                    }
-
                     printPortfolio(portfolioList);
                     System.out.println("Välj ett företag vars aktier du vill sälja");
                     int companyNumberOrder = scanner.nextInt();
@@ -98,49 +91,28 @@ public class Main {
                     scanner.nextLine();
 
 
-
-                    /*
-                    Company companyToSell = null;
-
-                    for(Company company : companyList) {
-                        if (company.getName().equalsIgnoreCase( companyName) ) {
-
-                            companyToSell = company;
-
-                            company.setStockAmount(company.getStockAmount() + numberOfStocks );
-                            break;
-                        }
-                    }
+                    Company companyToSell = companyList.get(companyNumberOrder-1);
+                    companyToSell.setStockAmount(companyToSell.getStockAmount() + numberOfStocks );
 
                     if (companyToSell != null){
                         int totalProfit = (int) (numberOfStocks * companyToSell.getStockPrice()) ;
                         System.out.println(" total profit: " + totalProfit + " SEK " );
                         userCapital += totalProfit;
 
-                        portfolioList.remove(companyNumberOrder-1);
+                        portfolioList.get(companyNumberOrder-1).setStockAmount(
+                                portfolioList.get(companyNumberOrder-1).getStockAmount() - numberOfStocks);
+                        if (portfolioList.get(companyNumberOrder-1).getStockAmount() == 0) {
+                            portfolioList.remove(companyNumberOrder-1);
+                        }
 
                     }      else {
                         System.out.println(" Company is not available.");
-                    } */
+                    }
 
-
-                    /*
-                    for (int i = 0; i < portfolioList.size(); i++) {
-                        if (portfolioList.get(i).getCompanyName().equalsIgnoreCase(choice)) {
-
-                        }
-                    }*/
-
-                    // räkna ut priset som man sålt för
-                    // få pengarna på kontot
-                    // de aktierna ska tas bort från portfolion
-                    // aktierna ska komma tillbaka till företaget
                     break;
                 case 4:
-                    // TODO skapa lista för portfolio som innehåller företag, antal aktier
                     printPortfolio(portfolioList);
                     break;
-                    // TODO visa transaktions historik
                 case 0:
                     run = false;
                     scanner.close();
@@ -163,10 +135,5 @@ public class Main {
             Portfolio portfolio = portfolioList.get(i);
             System.out.println((i+1) + ": " + portfolio);
         }
-
-
-//        for (Portfolio portfolio : portfolioList) {
-//            System.out.println(portfolio);
-//        }
     }
 }
